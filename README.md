@@ -21,18 +21,20 @@ This repository contains a proof-of-concept build using an ultrasonic sensor to 
 ### Using PlatformIO (Recommended)
 1. Install Visual Studio Code
 2. Install the PlatformIO IDE extension
-3. Clone this repository:
-   
-   ```git clone https://github.com/jlee056/Ultrasonic-Tactile-Alert.git```
+3. Clone this repository: 
+   ```
+   git clone https://github.com/jlee056/Ultrasonic-Tactile-Alert.git
+   ```
 
 5. Open the project folder in VS Code
 6. Connect the Arduino Uno
 7. Build and upload using the PlatformIO interface
 
 ### Using PlatformIO CLI
-
-```pio run```
-```pio run --target upload```
+```
+pio run
+pio run --target upload
+```
 
 ## Configuration
 You can modify the following parameters in `main.cpp`:
