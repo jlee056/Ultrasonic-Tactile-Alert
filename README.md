@@ -3,39 +3,50 @@
 Arduino project exploring tactile feedback for blind/low-vision navigation using an ultrasonic sensor.
 
 ## Overview
-This repository contains a proof-of-concept Arduino build that uses an ultrasonic sensor to measure how close an obstacle is. The distance is shown on a 16×2 LCD, and when an object is within a set threshold (default: 30 cm) a servo motor provides repeated “tap” alerts.
-
-This is a prototype made for learning and demonstration. It is not a finished assistive or safety device and has not been validated for real-world use.
+This repository contains a proof-of-concept build using an ultrasonic sensor to measure obstacle distance. The measured distance is displayed on a 16×2 LCD, and when an object is within a defined threshold (default: 30 cm), a servo motor generates repeated tactile “tap” alerts. This project is intended for experimentation and demonstration. It is not a finished assistive or safety device and has not been validated for real-world deployment.
 
 ## What it does
-- Measures distance with an ultrasonic sensor
-- Displays the distance on an LCD
-- Repeatedly triggers a servo “tap” when the object is within the threshold
+- Measures distance using an ultrasonic sensor
+- Displays real-time distance data on a 16×2 LCD
+- Triggers repeated servo “tap” feedback when an object is within a set threshold
 
 ## Parts used
-- Arduino Uno
-- Ultrasonic sensor
-- 16×2 LCD
-- Servo motor 
+- Arduino Uno (ATmega328P)
+- HC-SR04 ultrasonic sensor (or compatible)
+- 16×2 LCD display
+- Servo motor
+- Breadboard and jumper wires
 
 ## How to run
-1. Open the `.ino` file in the Arduino IDE
-2. Select the correct board and port
-3. Upload to the Arduino
-4. Place an object in front of the sensor and observe the LCD and servo response
+### Using PlatformIO (Recommended)
+1. Install Visual Studio Code
+2. Install the PlatformIO IDE extension
+3. Clone this repository:
+   git clone https://github.com/jlee056/Ultrasonic-Tactile-Alert.git
+4. Open the project folder in VS Code
+5. Connect the Arduino Uno
+6. Build and upload using the PlatformIO interface
+
+### Using PlatformIO CLI
+pio run
+pio run --target upload
 
 ## Configuration
-You can change these values in the code:
+You can modify the following parameters in `main.cpp`:
 - Distance threshold (cm)
-- How often the servo taps while the object is close
-- Servo angles and timing 
+- Servo tap interval and timing
+- Servo angles used for the tactile motion
 
 ## Limitations
-- Ultrasonic sensors can miss objects depending on angle, surface, and environment
-- This uses a single forward-facing sensor, so it does not provide directional feedback
+- Ultrasonic sensing accuracy depends on surface angle, material, and environment
+- Uses a single forward-facing sensor (no directional awareness)
+- Not calibrated for assistive or safety-critical use
 
 ## Future improvements
-- Add multiple sensors for left/right feedback
-- Create an enclosure and wearable mounting
-- Replace the servo with a vibration motor for a smaller, quieter alert
+- Add multiple sensors for directional feedback
+- Replace servo tapping with a vibration motor for quieter operation
+- Implement basic filtering for more stable distance readings
+- Design an enclosure for wearable mounting
 
+## License
+MIT License — see the LICENSE file for details.
