@@ -59,3 +59,7 @@ In `src/main.cpp`:
 - LCD flickers slightly because the code clears it each loop.
 - Servo movement is a simple demo pattern (could be changed to a smoother or “one-time” trigger).
 - Could add averaging/filtering to reduce noisy distance readings.
+
+## Contributors
+- Nicholas Xanthopoulos – wrote the Arduino code (distance measurement logic, LCD output, servo control behavior)
+- Jeremy Lee – designed and assembled the hardware circuit (sensor, LCD, and servo wiring)
