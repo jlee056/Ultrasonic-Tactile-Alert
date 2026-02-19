@@ -1,57 +1,61 @@
-# Ultrasonic Tactile Alert
+# Arduino Ultrasonic + LCD + Servo (Simple Demo)
 
-Arduino project exploring tactile feedback for blind/low-vision navigation using an ultrasonic sensor.
+A small Arduino project using:
+- **HC-SR04 ultrasonic sensor** to measure distance
+- **16x2 LCD** to show the distance
+- **Servo motor** that moves when something is close
 
-## Overview
-This repository contains a proof-of-concept build using an ultrasonic sensor to measure obstacle distance. The measured distance is displayed on a 16×2 LCD, and when an object is within a defined threshold (default: 30 cm), a servo motor generates repeated tactile “tap” alerts. This project is intended for experimentation and demonstration. It is not a finished assistive or safety device and has not been validated for real-world deployment.
+This is a simple beginner-style project, but it’s organized enough to be shared and built by someone else.
 
 ## What it does
-- Measures distance using an ultrasonic sensor
-- Displays real-time distance data on a 16×2 LCD
-- Triggers repeated servo “tap” feedback when an object is within a set threshold
+- Sends an ultrasonic pulse (HC-SR04)
+- Measures echo time with `pulseIn()`
+- Converts time to distance (cm)
+- Prints to Serial + shows on LCD
+- If distance is less than a threshold, moves the servo through a few angles
 
-## Parts used
-- Arduino Uno (ATmega328P)
-- HC-SR04 ultrasonic sensor (or compatible)
-- 16×2 LCD display
-- Servo motor
-- Breadboard and jumper wires
+## Hardware
+- Arduino Uno
+- HC-SR04 ultrasonic sensor
+- 16x2 LCD
+- SG90 servo
+- Breadboard + jumper wires
 
-## How to run
-### Using PlatformIO (Recommended)
-1. Install Visual Studio Code
-2. Install the PlatformIO IDE extension
-3. Clone this repository: 
-   ```
-   git clone https://github.com/jlee056/Ultrasonic-Tactile-Alert.git
-   ```
+## Default pins
+**HC-SR04**
+- TRIG → D9  
+- ECHO → D10  
+- VCC → 5V  
+- GND → GND  
 
-5. Open the project folder in VS Code
-6. Connect the Arduino Uno
-7. Build and upload using the PlatformIO interface
+**Servo**
+- Signal → D3  
+- VCC → 5V  
+- GND → GND
 
-### Using PlatformIO CLI
-```
-pio run
-pio run --target upload
-```
+**LCD (4-bit mode)**
+- RS → D12
+- E  → D11
+- D4 → D4
+- D5 → D5
+- D6 → D6
+- D7 → D7
 
-## Configuration
-You can modify the following parameters in `main.cpp`:
-- Distance threshold (cm)
-- Servo tap interval and timing
-- Servo angles used for the tactile motion
+## Build / Upload (PlatformIO)
+This repo uses PlatformIO.
 
-## Limitations
-- Ultrasonic sensing accuracy depends on surface angle, material, and environment
-- Uses a single forward-facing sensor (no directional awareness)
-- Not calibrated for assistive or safety-critical use
+1. Install VS Code
+2. Install the PlatformIO extension
+3. Open the folder in VS Code
+4. Click **Upload**
+5. Open **Serial Monitor** at **9600 baud**
 
-## Future improvements
-- Add multiple sensors for directional feedback
-- Replace servo tapping with a vibration motor for quieter operation
-- Implement basic filtering for more stable distance readings
-- Design an enclosure for wearable mounting
+## Tuning
+In `src/main.cpp`:
+- `triggerDistanceCm` controls when the servo triggers
+- `echoTimeoutUs` controls how long it waits for an echo before giving up
 
-## License
-MIT License — see the LICENSE file for details.
+## Notes / Possible improvements
+- LCD flickers slightly because the code clears it each loop.
+- Servo movement is a simple demo pattern (could be changed to a smoother or “one-time” trigger).
+- Could add averaging/filtering to reduce noisy distance readings.
